@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Place your order for fresh sourdough bread, pastries and cakes from Mmereki's Fine Bakery in Polokwane.">
+<meta name="keywords" content="order bakery, buy sourdough, pastry delivery, cake order, Polokwane bakery order">
+<title>MMEREKI'S FINE BAKERY - Place Your Order</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <h1><b>MMEREKI'S FINE BAKERY</b></h1>
+  <p>Handcrafted sourdough, pastries & seasonal cakes – Made with ''Lerato'' In Polokwane, Limpopo</p>
+</header>
+<nav>
+  <a href="index.html"><b>Our Story</b></a>
+  <a href="products.html"><b>Our Pastry Products</b></a>
+  <a href="order.html"><b>Order Here</b></a>
+  <a href="contact.html"><b>Contact Us</b></a>
+</nav>
+
+<section id="order" class="fade-in">
+  <h2><b>Place an Order</b></h2>
+  
+  <div class="order-process">
+    <div class="process-steps">
+      <div class="step active" data-step="1">1. Your Details</div>
+      <div class="step" data-step="2">2. Order Summary</div>
+      <div class="step" data-step="3">3. Confirmation</div>
+    </div>
+    
+    <form id="orderForm" class="order-form">
+      <div class="form-step active" id="step1">
+        <h3>Your Information</h3>
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
+          <span class="error-message" id="nameError"></span>
+        </div>
+        
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Email Address" required />
+          <span class="error-message" id="emailError"></span>
+        </div>
+        
+        <div class="form-group">
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required />
+          <span class="error-message" id="phoneError"></span>
+        </div>
+        
+        <div class="form-group">
+          <textarea id="address" name="address" placeholder="Delivery Address" rows="3" required></textarea>
+          <span class="error-message" id="addressError"></span>
+        </div>
+        
+        <button type="button" class="next-button" onclick="nextStep(1)">Next</button>
+      </div>
+      
+      <div class="form-step" id="step2">
+        <h3>Order Details</h3>
+        
+        <div class="form-group">
+          <select id="product" name="product" required>
+            <option value="">Choose Product</option>
+            <optgroup label="Sourdough Bread">
+              <option value="Classic Sourdough Bread">Classic Sourdough Bread - R80</option>
+              <option value="Whole Wheat Sourdough">Whole Wheat Sourdough - R90</option>
+              <option value="Multigrain Sourdough">Multigrain Sourdough - R100</option>
+            </optgroup>
+            <optgroup label="Morning Pastries">
+              <option value="Melktert (Milk Tart)">Melktert (Milk Tart) - R25</option>
+              <option value="Koeksisters">Koeksisters - R30</option>
+              <option value="Vetkoek">Vetkoek - R20</option>
+            </optgroup>
+            <optgroup label="Seasonal Cakes">
+              <option value="Malva Pudding">Malva Pudding - R70</option>
+              <option value="Carrot Cake">Carrot Cake with Cream Cheese Frosting - R75</option>
+              <option value="Amarula Cake">Amarula Cake - R90</option>
+            </optgroup>
+          </select>
+          <span class="error-message" id="productError"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="deliveryDate">Preferred Delivery Date:</label>
+          <input type="date" id="deliveryDate" name="deliveryDate" required />
+          <span class="error-message" id="dateError"></span>
+        </div>
+        
+        <div class="form-group">
+          <textarea id="specialRequests" name="specialRequests" placeholder="Special requests (allergies, dietary requirements, etc.)" rows="4"></textarea>
+        </div>
+        
+        <div class="button-group">
+          <button type="button" class="back-button" onclick="prevStep(2)">Back</button>
+          <button type="button" class="next-button" onclick="nextStep(2)">Review Order</button>
+        </div>
+      </div>
+      
+      <div class="form-step" id="step3">
+        <h3>Review Your Order</h3>
+        
+        <div id="orderSummary" class="order-summary">
+        </div>
+        
+        <div class="form-group">
+          <label class="checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required />
+            <span class="checkmark"></span>
+            I agree to the terms and conditions
+          </label>
+          <span class="error-message" id="termsError"></span>
+        </div>
+        
+        <div class="button-group">
+          <button type="button" class="back-button" onclick="prevStep(3)">Back</button>
+          <button type="submit" class="submit-button"><b>Place Order</b></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content confirmation-modal">
+      <h2>Order Confirmed!</h2>
+      <div id="confirmationDetails"></div>
+      <p>Thank you for your order. We'll contact you shortly to confirm delivery details.</p>
+      <button onclick="closeConfirmation()" class="confirm-button">Continue Shopping</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 MMEREKI'S FINE BAKERY | Follow us on Instagram @finebakeryplk</p>
+</footer>
+
+<script>
+  let currentStep = 1;
+  
+  function showStep(step) {
+    document.querySelectorAll('.form-step').forEach(formStep => {
+      formStep.classList.remove('active');
+    });
+    
+    document.getElementById(`step${step}`).classList.add('active');
+    
+    document.querySelectorAll('.process-steps .step').forEach(stepElement => {
+      stepElement.classList.remove('active');
+      if (parseInt(stepElement.getAttribute('data-step')) === step) {
+        stepElement.classList.add('active');
+      }
+    });
+    
+    currentStep = step;
+    
+    if (step === 3) {
+      updateOrderSummary();
+    }
+  }
+  
+  function nextStep(step) {
+    if (validateStep(step)) {
+      showStep(step + 1);
+    }
+  }
+  
+  function prevStep(step) {
+    showStep(step - 1);
+  }
+  
+  function validateStep(step) {
+    let isValid = true;
+    
+    if (step === 1) {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      
+      document.querySelectorAll('.error-message').forEach(error => {
+        error.textContent = '';
+      });
+      
+      if (!name.trim()) {
+        document.getElementById('nameError').textContent = 'Name is required';
+        isValid = false;
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Valid email is required';
+        isValid = false;
+      }
+      
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phone)) {
+        document.getElementById('phoneError').textContent = 'Valid 10-digit phone number is required';
+        isValid = false;
+      }
+      
+      if (!address.trim()) {
+        document.getElementById('addressError').textContent = 'Delivery address is required';
+        isValid = false;
+      }
+    }
+    
+    if (step === 2) {
+      const product = document.getElementById('product').value;
+      const deliveryDate = document.getElementById('deliveryDate').value;
+      
+      document.getElementById('productError').textContent = '';
+      document.getElementById('dateError').textContent = '';
+      
+      if (!product) {
+        document.getElementById('productError').textContent = 'Please select a product';
+        isValid = false;
+      }
+      
+      const today = new Date().toISOString().split('T')[0];
+      if (!deliveryDate || deliveryDate < today) {
+        document.getElementById('dateError').textContent = 'Please select a valid future date';
+        isValid = false;
+      }
+    }
+    
+    return isValid;
+  }
+  
+  function updateOrderSummary() {
+    const orderSummary = document.getElementById('orderSummary');
+    const formData = new FormData(document.getElementById('orderForm'));
+    
+    const summaryHTML = `
+      <div class="summary-item">
+        <strong>Customer:</strong> ${formData.get('name')}
+      </div>
+      <div class="summary-item">
+        <strong>Email:</strong> ${formData.get('email')}
+      </div>
+      <div class="summary-item">
+        <strong>Phone:</strong> ${formData.get('phone')}
+      </div>
+      <div class="summary-item">
+        <strong>Delivery Address:</strong> ${formData.get('address')}
+      </div>
+      <div class="summary-item">
+        <strong>Product:</strong> ${formData.get('product')}
+      </div>
+      <div class="summary-item">
+        <strong>Quantity:</strong> ${formData.get('quantity')}
+      </div>
+      <div class="summary-item">
+        <strong>Delivery Date:</strong> ${formData.get('deliveryDate')}
+      </div>
+      <div class="summary-item">
+        <strong>Special Requests:</strong> ${formData.get('specialRequests') || 'None'}
+      </div>
+    `;
+    
+    orderSummary.innerHTML = summaryHTML;
+  }
+  
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!document.getElementById('terms').checked) {
+      document.getElementById('termsError').textContent = 'You must agree to the terms and conditions';
+      return;
+    }
+    
+    document.getElementById('confirmationModal').style.display = 'block';
+    
+    console.log('Order submitted:', new FormData(this));
+  });
+  
+  function closeConfirmation() {
+    document.getElementById('confirmationModal').style.display = 'none';
+    document.getElementById('orderForm').reset();
+    showStep(1);
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('deliveryDate').min = today;
+  });
+</script>
+</body>
+</html>

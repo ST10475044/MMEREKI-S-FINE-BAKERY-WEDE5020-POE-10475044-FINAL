@@ -1,0 +1,244 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Browse our delicious sourdough bread, morning pastries, and seasonal cakes at Mmereki's Fine Bakery in Polokwane.">
+<meta name="keywords" content="sourdough bread, pastries, cakes, bakery products, Polokwane bakery, artisanal bread">
+<title>MMEREKI'S FINE BAKERY - Our Bakery Products</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <h1><b>MMEREKI'S FINE BAKERY</b></h1>
+  <p>Handcrafted sourdough, pastries & seasonal cakes – Made with ''Lerato'' In Polokwane, Limpopo</p>
+</header>
+<nav>
+  <a href="index.html"><b>Our Story</b></a>
+  <a href="products.html"><b>Our Pastry Products</b></a>
+  <a href="order.html"><b>Order Here</b></a>
+  <a href="contact.html"><b>Contact Us</b></a>
+</nav>
+
+<section class="products">
+  <div class="search-container">
+    <input type="text" id="productSearch" placeholder="Search for products..." class="search-input">
+    <button id="searchButton" class="search-button">Search</button>
+  </div>
+  
+  <div class="tabs">
+    <button class="tab-button active" data-tab="sourdough">Sourdough Bread</button>
+    <button class="tab-button" data-tab="pastries">Morning Pastries</button>
+    <button class="tab-button" data-tab="cakes">Seasonal Cakes</button>
+  </div>
+  
+  <h1 id="featured-title"><strong>Featured Products</strong></h1>
+  
+  <div class="tab-content active" id="sourdough-tab">
+    <div class="product-grid">
+      <div class="product-item">
+        <img src="sdb.jpg" alt="Classic Sourdough Bread - Artisanal bakery product" class="product-image" />
+        <h3><b>Sourdough Loaves</b></h3>
+        <ul>
+          <li><b>Classic Sourdough Bread</b> - R80</li>
+          <li><b>Whole Wheat Sourdough</b> - R90</li>
+          <li><b>Multigrain Sourdough</b> - R100</li>
+          <li><b>Lavender & Olive Sourdough</b> - R110</li>
+          <li><b>Seeded Sourdough (Sunflower, Pumpkin, Flax)</b> - R95</li>
+          <li><b>Rye Sourdough</b> - R85</li>
+          <li><b>Herb & Garlic Sourdough</b> - R105</li>
+          <li><b>Spelt Sourdough</b> - R90</li>
+          <li><b>Chocolate & Banana Sourdough</b> - R120</li>
+          <li><b>Sweet Potato Sourdough</b> - R100</li>
+        </ul>
+        <button class="add-to-cart" data-product="Classic Sourdough Bread" data-price="80">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="tab-content" id="pastries-tab">
+    <div class="product-grid">
+      <div class="product-item">
+        <img src="koek.jpg" alt="Morning Pastries - Fresh bakery treats" class="product-image" />
+        <h3><b>Morning Pastries</b></h3>
+        <ul>
+          <li><b>Melktert (Milk Tart)</b> - R25</li>
+          <li><b>Koeksisters</b> - R30</li>
+          <li><b>Vetkoek</b> - R20</li>
+          <li><b>Magwinya (Milk Fritters)</b> - R15</li>
+          <li><b>Rooibos & Berry Tart</b> - R35</li>
+          <li><b>Apple Tart</b> - R28</li>
+          <li><b>Savoury Bunny Chow Pastry</b> - R25</li>
+          <li><b>Carrot and Nut Pastry</b> - R30</li>
+          <li><b>Lamingtons</b> - R22</li>
+          <li><b>Custard Pastry Squares</b> - R20</li>
+        </ul>
+        <button class="add-to-cart" data-product="Melktert (Milk Tart)" data-price="25">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="tab-content" id="cakes-tab">
+    <div class="product-grid">
+      <div class="product-item">
+        <img src="cake.jpg" alt="Seasonal Cakes - Fresh bakery cakes" class="product-image" />
+        <h3><b>Seasonal Cakes</b></h3>
+        <ul>
+          <li><b>Malva Pudding</b> - R70</li>
+          <li><b>Melktert (Milk Tart)</b> - R50</li>
+          <li><b>Cape Brandy Pudding</b> - R80</li>
+          <li><b>Koeksisters Cake</b> - R60</li>
+          <li><b>Carrot Cake with Cream Cheese Frosting</b> - R75</li>
+          <li><b>Choc-Coconut Slice</b> - R55</li>
+          <li><b>Love Cake (Lemon & Coconut)</b> - R65</li>
+          <li><b>Amarula Cake</b> - R90</li>
+          <li><b>Buttermilk Rusks Cake</b> - R50</li>
+          <li><b>Peppermint Crisp Tart</b> - R60</li>
+        </ul>
+        <button class="add-to-cart" data-product="Malva Pudding" data-price="70">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Your Shopping Cart</h2>
+      <div id="cartItems"></div>
+      <div id="cartTotal"></div>
+      <button id="checkoutButton" class="checkout-button">Proceed to Checkout</button>
+    </div>
+  </div>
+  
+  <div class="cart-icon-container">
+    <button id="cartButton" class="cart-button">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 MMEREKI'S FINE BAKERY | Follow us on Instagram @finebakeryplk</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        this.classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+    
+    const searchInput = document.getElementById('productSearch');
+    const searchButton = document.getElementById('searchButton');
+    
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        performSearch();
+      }
+    });
+    
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const productItems = document.querySelectorAll('.product-item');
+      
+      productItems.forEach(item => {
+        const productText = item.textContent.toLowerCase();
+        if (productText.includes(searchTerm)) {
+          item.style.display = 'block';
+          item.classList.add('search-highlight');
+          setTimeout(() => {
+            item.classList.remove('search-highlight');
+          }, 2000);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+    
+    let cart = [];
+    const cartButton = document.getElementById('cartButton');
+    const cartModal = document.getElementById('cartModal');
+    const closeModal = document.querySelector('.close');
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const checkoutButton = document.getElementById('checkoutButton');
+    
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const product = this.getAttribute('data-product');
+        const price = parseInt(this.getAttribute('data-price'));
+        
+        cart.push({ product, price });
+        updateCart();
+        
+        this.textContent = 'Added!';
+        this.classList.add('added');
+        setTimeout(() => {
+          this.textContent = 'Add to Cart';
+          this.classList.remove('added');
+        }, 1000);
+      });
+    });
+    
+    cartButton.addEventListener('click', function() {
+      cartModal.style.display = 'block';
+    });
+    
+    closeModal.addEventListener('click', function() {
+      cartModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(event) {
+      if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+      }
+    });
+    
+    checkoutButton.addEventListener('click', function() {
+      if (cart.length > 0) {
+        window.location.href = 'order.html';
+      } else {
+        alert('Your cart is empty!');
+      }
+    });
+    
+    function updateCart() {
+      cartCount.textContent = cart.length;
+      
+      cartItems.innerHTML = '';
+      let total = 0;
+      
+      cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
+        itemElement.innerHTML = `
+          <span>${item.product}</span>
+          <span>R${item.price}</span>
+        `;
+        cartItems.appendChild(itemElement);
+        total += item.price;
+      });
+      
+      cartTotal.innerHTML = `<h3>Total: R${total}</h3>`;
+    }
+  });
+</script>
+</body>
+</html>
+```

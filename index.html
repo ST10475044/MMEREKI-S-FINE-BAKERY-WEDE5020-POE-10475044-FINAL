@@ -1,0 +1,98 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Mmereki's Fine Bakery - Handcrafted sourdough, pastries & seasonal cakes in Polokwane, Limpopo. Fresh, artisanal baked goods made with love.">
+<meta name="keywords" content="bakery, sourdough, pastries, cakes, Polokwane, Limpopo, artisanal bread, fresh baked goods">
+<title>MMEREKI'S FINE BAKERY - Artisanal Bakery in Polokwane</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <h1><b>MMEREKI'S FINE BAKERY</b></h1>
+  <p>Handcrafted sourdough, pastries & seasonal cakes – Made with skill. Located In Polokwane, Limpopo</p>
+</header>
+<nav>
+  <a href="index.html"><b>Our Story</b></a>
+  <a href="products.html"><b>Our Pastry Products</b></a>
+  <a href="order.html"><b>Order Here</b></a>
+  <a href="contact.html"><b>Contact Us</b></a>
+</nav>
+
+<section id="story" class="fade-in">
+  <h2><b>Our Story</b></h2>
+  <p>Founded in 2025, Mmereki's Fine Bakery has become a beloved local bakery in Polokwane. We specialize in handcrafted sourdough, buttery pastries, and seasonal cakes made with locally sourced ingredients.</p>
+  
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Our Mission</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>To deliver fresh, artisanal baked goods made with love and local ingredients.</p>
+      </div>
+    </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Our Vision</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>To become the go-to bakery in Limpopo for quality artisanal baked goods.</p>
+      </div>
+    </div>
+    
+    <div class="accordion-item">
+      <button class="accordion-header">
+        <span>Our Values</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <p>Quality ingredients, traditional techniques, community focus, and sustainable practices.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cta-section">
+    <h3>Visit Our Bakery Today!</h3>
+    <p>Experience the taste of freshly baked goods made with passion</p>
+    <button class="cta-button" onclick="location.href='products.html'">View Our Products</button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 MMEREKI'S FINE BAKERY | Follow us on Instagram @finebakeryplk</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('.accordion-icon');
+        
+        this.parentElement.classList.toggle('active');
+        
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          icon.textContent = '+';
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.textContent = '-';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
+```

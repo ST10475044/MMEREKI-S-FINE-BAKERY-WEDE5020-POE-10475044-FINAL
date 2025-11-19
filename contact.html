@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Contact Mmereki's Fine Bakery in Polokwane. Visit us at 45A Pietersburg Street or send us a message.">
+<meta name="keywords" content="contact bakery, Polokwane bakery, bakery location, Mmereki's Fine Bakery contact">
+<title>MMEREKI'S FINE BAKERY - Contact Us & Location</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+<header>
+  <h1><b>MMEREKI'S FINE BAKERY</b></h1>
+  <p>Handcrafted sourdough, pastries & seasonal cakes – Made with ''Lerato'' In Polokwane, Limpopo</p>
+</header>
+<nav>
+  <a href="index.html"><b>Our Story</b></a>
+  <a href="products.html"><b>Our Pastry Products</b></a>
+  <a href="order.html"><b>Order Here</b></a>
+  <a href="contact.html"><b>Contact Us</b></a>
+</nav>
+
+<section class="contact-section fade-in">
+  <h2><b>Contact Us</b></h2>
+  
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Visit Our Bakery</h3>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <div>
+          <strong>Address:</strong><br>
+          45A Pietersburg Street,<br>
+          Polokwane, Limpopo, 0699
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <div>
+          <strong>Phone:</strong><br>
+          067-174-4276
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <span class="contact-icon">📧</span>
+        <div>
+          <strong>Email:</strong><br>
+          FINEBAKERYBYMMEREKI.co.za
+        </div>
+      </div>
+      
+      <div class="contact-item">
+        <span class="contact-icon">🕒</span>
+        <div>
+          <strong>Opening Hours:</strong><br>
+          Monday - Friday: 7:00 AM - 6:00 PM<br>
+          Saturday: 7:00 AM - 4:00 PM<br>
+          Sunday: 8:00 AM - 2:00 PM
+        </div>
+      </div>
+    </div>
+    
+    <div class="contact-form-container">
+      <h3>Send Us a Message</h3>
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <input type="text" id="contactName" name="name" placeholder="Your Name" required />
+          <span class="error-message" id="contactNameError"></span>
+        </div>
+        
+        <div class="form-group">
+          <input type="email" id="contactEmail" name="email" placeholder="Email Address" required />
+          <span class="error-message" id="contactEmailError"></span>
+        </div>
+        
+        <div class="form-group">
+          <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" />
+          <span class="error-message" id="contactPhoneError"></span>
+        </div>
+        
+        <div class="form-group">
+          <select id="messageType" name="messageType" required>
+            <option value="">Select Message Type</option>
+            <option value="general">General Inquiry</option>
+            <option value="complaint">Complaint</option>
+            <option value="compliment">Compliment</option>
+            <option value="suggestion">Suggestion</option>
+            <option value="partnership">Partnership Inquiry</option>
+          </select>
+          <span class="error-message" id="messageTypeError"></span>
+        </div>
+        
+        <div class="form-group">
+          <textarea id="message" name="message" placeholder="Your Message" rows="6" required></textarea>
+          <span class="error-message" id="messageError"></span>
+        </div>
+        
+        <div class="form-group">
+          <label class="checkbox-container">
+            <input type="checkbox" id="newsletter" name="newsletter" />
+            <span class="checkmark"></span>
+            Subscribe to our newsletter for updates and special offers
+          </label>
+        </div>
+        
+        <button type="submit" class="submit-button">Send Message</button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="map-container">
+    <h3>Find Us</h3>
+    <div id="map"></div>
+  </div>
+</section>
+
+<div id="emailModal" class="modal">
+  <div class="modal-content email-modal">
+    <span class="close">&times;</span>
+    <h2>Send Email</h2>
+    <form id="emailForm">
+      <div class="form-group">
+        <label for="emailTo">To:</label>
+        <input type="email" id="emailTo" value="FINEBAKERYBYMMEREKI.co.za" readonly />
+      </div>
+      
+      <div class="form-group">
+        <label for="emailSubject">Subject:</label>
+        <input type="text" id="emailSubject" readonly />
+      </div>
+      
+      <div class="form-group">
+        <label for="emailBody">Message:</label>
+        <textarea id="emailBody" rows="10" readonly></textarea>
+      </div>
+      
+      <button type="button" onclick="sendEmail()" class="submit-button">Send Email</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 MMEREKI'S FINE BAKERY | Follow us on Instagram @finebakeryplk</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  function initMap() {
+    const map = L.map('map').setView([-23.896, 29.448], 15);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    
+    L.marker([-23.896, 29.448])
+      .addTo(map)
+      .bindPopup('<b>Mmereki\'s Fine Bakery</b><br>45A Pietersburg Street, Polokwane')
+      .openPopup();
+  }
+  
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  function validatePhone(phone) {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  }
+  
+  function validateForm() {
+    let isValid = true;
+    
+    document.querySelectorAll('.error-message').forEach(error => {
+      error.textContent = '';
+    });
+    
+    const name = document.getElementById('contactName').value.trim();
+    if (!name) {
+      document.getElementById('contactNameError').textContent = 'Name is required';
+      isValid = false;
+    }
+    
+    const email = document.getElementById('contactEmail').value.trim();
+    if (!email) {
+      document.getElementById('contactEmailError').textContent = 'Email is required';
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      document.getElementById('contactEmailError').textContent = 'Please enter a valid email address';
+      isValid = false;
+    }
+    
+    const phone = document.getElementById('contactPhone').value.trim();
+    if (phone && !validatePhone(phone)) {
+      document.getElementById('contactPhoneError').textContent = 'Please enter a valid 10-digit phone number';
+      isValid = false;
+    }
+    
+    const messageType = document.getElementById('messageType').value;
+    if (!messageType) {
+      document.getElementById('messageTypeError').textContent = 'Please select a message type';
+      isValid = false;
+    }
+    
+    const message = document.getElementById('message').value.trim();
+    if (!message) {
+      document.getElementById('messageError').textContent = 'Message is required';
+      isValid = false;
+    } else if (message.length < 10) {
+      document.getElementById('messageError').textContent = 'Message must be at least 10 characters long';
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+  
+  function prepareEmail() {
+    if (!validateForm()) {
+      return false;
+    }
+    
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const phone = document.getElementById('contactPhone').value;
+    const messageType = document.getElementById('messageType');
+    const messageTypeText = messageType.options[messageType.selectedIndex].text;
+    const message = document.getElementById('message').value;
+    const newsletter = document.getElementById('newsletter').checked ? 'Yes' : 'No';
+    
+    const subject = `Website Contact: ${messageTypeText} from ${name}`;
+    const body = `
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Message Type: ${messageTypeText}
+Newsletter Subscription: ${newsletter}
+
+Message:
+${message}
+
+---
+This message was sent from the Mmereki's Fine Bakery website contact form.
+    `.trim();
+    
+    document.getElementById('emailSubject').value = subject;
+    document.getElementById('emailBody').value = body;
+    
+    document.getElementById('emailModal').style.display = 'block';
+    
+    return true;
+  }
+  
+  function sendEmail() {
+    const emailTo = document.getElementById('emailTo').value;
+    const subject = document.getElementById('emailSubject').value;
+    const body = document.getElementById('emailBody').value;
+    
+    const mailtoLink = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.location.href = mailtoLink;
+    
+    setTimeout(() => {
+      document.getElementById('emailModal').style.display = 'none';
+      
+      alert('Thank you for your message! Your email client should open with the message prepared. Please send it to contact us.');
+      
+      document.getElementById('contactForm').reset();
+    }, 1000);
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    initMap();
+    
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      prepareEmail();
+    });
+    
+    const emailModal = document.getElementById('emailModal');
+    const closeModal = document.querySelector('#emailModal .close');
+    
+    closeModal.addEventListener('click', function() {
+      emailModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(event) {
+      if (event.target === emailModal) {
+        emailModal.style.display = 'none';
+      }
+    });
+    
+    const phoneInput = document.getElementById('contactPhone');
+    phoneInput.addEventListener('input', function() {
+      const phone = this.value.trim();
+      if (phone && !validatePhone(phone)) {
+        document.getElementById('contactPhoneError').textContent = 'Please enter a valid 10-digit phone number';
+      } else {
+        document.getElementById('contactPhoneError').textContent = '';
+      }
+    });
+    
+    const emailInput = document.getElementById('contactEmail');
+    emailInput.addEventListener('blur', function() {
+      const email = this.value.trim();
+      if (email && !validateEmail(email)) {
+        document.getElementById('contactEmailError').textContent = 'Please enter a valid email address';
+      } else {
+        document.getElementById('contactEmailError').textContent = '';
+      }
+    });
+  });
+</script>
+</body>
+</html>
